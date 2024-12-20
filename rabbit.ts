@@ -628,13 +628,12 @@ function z(a: any) {
     return [(a & 4278190080) >> 24, (a & 16711680) >> 16, (a & 65280) >> 8, a & 255];
 }
 
-const main = async (embed_url: string) => {
-    referrer = embed_url.includes("mega") ? "https://sflix2.to" : "https://flixhq.to";
-    let regx = /([A-Z])\w+/;
-    let xrax = embed_url.match(regx)[0];
+const main = async (embed_url: string, site: string) => {
+    referrer = site;
+    let xrax = embed_url.split("/").pop().split("?").shift();  //thanks itzzzme
     console.log(xrax);
 
-    regx = /https:\/\/[a-zA-Z0-9.]*/;
+    let regx = /https:\/\/[a-zA-Z0-9.]*/;
     let base_url = embed_url.match(regx)[0];
     console.log(base_url);
 
@@ -688,4 +687,5 @@ const main = async (embed_url: string) => {
 }
 
 
-main("https://megacloud.tube/embed-1/e-1/DagsMlhYUNtW?z="); //change this value to the embed_url you want
+main("https://megacloud.tv/embed-2/e-1/3MzsS8GcJQo1?k=1", "https://hianime.to"); //change this value to the embed_url you want
+//the second arguments is the original site you want to extract from, this is needed so it can be used as the referrer
